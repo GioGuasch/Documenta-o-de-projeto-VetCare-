@@ -1,0 +1,47 @@
+@startuml
+
+skinparam componentStyle rectangle
+
+package "Camada de Apresentação" {
+    [Interface Web\n(React)]
+}
+
+package "Camada de Negócio" {
+    [Auth Service]
+    [Cliente Service]
+    [Animal Service]
+    [Consulta Service]
+    [Prontuario Service]
+    [Vacina Service]
+    [Receita Service]
+    [Relatorio Service]
+}
+
+package "Camada de Persistência" {
+    [Repositories]
+}
+
+database "PostgreSQL"
+
+[Interface Web\n(React)] --> [Auth Service]
+
+[Interface Web\n(React)] --> [Cliente Service]
+[Interface Web\n(React)] --> [Animal Service]
+[Interface Web\n(React)] --> [Consulta Service]
+[Interface Web\n(React)] --> [Prontuario Service]
+[Interface Web\n(React)] --> [Vacina Service]
+[Interface Web\n(React)] --> [Receita Service]
+[Interface Web\n(React)] --> [Relatorio Service]
+
+[Auth Service] --> [Repositories]
+[Cliente Service] --> [Repositories]
+[Animal Service] --> [Repositories]
+[Consulta Service] --> [Repositories]
+[Prontuario Service] --> [Repositories]
+[Vacina Service] --> [Repositories]
+[Receita Service] --> [Repositories]
+[Relatorio Service] --> [Repositories]
+
+[Repositories] --> PostgreSQL
+
+@enduml
