@@ -1,0 +1,35 @@
+@startuml
+
+node "Cliente" {
+
+    artifact "Google Chrome"
+}
+
+cloud Internet
+
+node "Servidor AWS EC2" {
+
+    node "Docker Container Frontend" {
+        artifact "React"
+    }
+
+    node "Docker Container Backend" {
+        artifact "Spring Boot"
+    }
+
+}
+
+database "PostgreSQL" {
+
+    artifact "VetCareDB"
+}
+
+"Google Chrome" --> Internet
+
+Internet --> React
+
+React --> "Spring Boot"
+
+"Spring Boot" --> VetCareDB
+
+@enduml
