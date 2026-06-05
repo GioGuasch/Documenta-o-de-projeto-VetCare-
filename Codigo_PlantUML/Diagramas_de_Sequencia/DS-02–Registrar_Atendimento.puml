@@ -1,0 +1,29 @@
+@startuml
+
+actor Veterinario
+
+boundary "Tela Atendimento" as Tela
+control "AtendimentoController" as Controller
+control "AtendimentoService" as Service
+entity "Prontuario" as Prontuario
+database "Banco de Dados" as BD
+
+Veterinario -> Tela : informar diagnóstico
+
+Tela -> Controller : registrarAtendimento()
+
+Controller -> Service : processarAtendimento()
+
+Service -> Prontuario : registrarDiagnostico()
+
+Prontuario --> Service : diagnóstico registrado
+
+Service -> BD : atualizarConsulta()
+
+BD --> Service : consulta finalizada
+
+Service --> Controller : sucesso
+
+Controller --> Tela : exibir confirmação
+
+@enduml
