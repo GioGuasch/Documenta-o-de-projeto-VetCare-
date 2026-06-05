@@ -2,28 +2,56 @@
 
 actor Veterinario
 
-boundary "Tela Vacinação" as Tela
-control "VacinaController" as Controller
-control "VacinaService" as Service
-entity "Vacina" as Vacina
-database "Banco de Dados" as BD
+boundary TelaVacinacao
+control VacinaController
+control VacinaService
+entity Animal
+entity Vacina
+database BancoDeDados
 
-Veterinario -> Tela : informar vacina aplicada
+Veterinario -> TelaVacinacao : informarVacina()
+activate TelaVacinacao
 
-Tela -> Controller : registrarVacina()
+TelaVacinacao -> VacinaController : registrarVacina()
+activate VacinaController
 
-Controller -> Service : validarVacina()
+VacinaController -> VacinaService : validarAplicacao()
+activate VacinaService
 
-Service -> Vacina : criarRegistro()
+VacinaService -> Animal : verificarCadastro()
+activate Animal
 
-Vacina --> Service : registro criado
+Animal --> VacinaService : animalValido
+deactivate Animal
 
-Service -> BD : salvarVacinacao()
+alt Animal cadastrado
 
-BD --> Service : vacinação registrada
+    VacinaService -> Vacina : criarRegistro()
+    activate Vacina
 
-Service --> Controller : sucesso
+    Vacina --> VacinaService : registroCriado
+    deactivate Vacina
 
-Controller --> Tela : exibir confirmação
+    VacinaService -> BancoDeDados : salvarRegistro()
+    activate BancoDeDados
+
+    BancoDeDados --> VacinaService : sucesso
+    deactivate BancoDeDados
+
+    VacinaService --> VacinaController : confirmação
+
+else Animal não encontrado
+
+    VacinaService --> VacinaController : erro
+
+end
+
+deactivate VacinaService
+
+VacinaController --> TelaVacinacao : exibirResultado()
+deactivate VacinaController
+
+TelaVacinacao --> Veterinario : confirmação
+deactivate TelaVacinacao
 
 @enduml
