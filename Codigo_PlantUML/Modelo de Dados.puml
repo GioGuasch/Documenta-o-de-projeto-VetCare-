@@ -1,77 +1,110 @@
 @startuml
 
 entity Usuario {
-    * id : BIGINT
-    --
-    nome : VARCHAR
-    email : VARCHAR
-    senha : VARCHAR
+  * id : BIGINT
+  --
+  nome : VARCHAR
+  email : VARCHAR
+  senha : VARCHAR
 }
 
 entity Cliente {
-    * id : BIGINT
-    --
-    telefone : VARCHAR
-    endereco : VARCHAR
+  * id : BIGINT
+  --
+  telefone : VARCHAR
+  endereco : VARCHAR
+}
+
+entity Recepcionista {
+  * id : BIGINT
+  --
+  matricula : VARCHAR
+}
+
+entity Veterinario {
+  * id : BIGINT
+  --
+  crmv : VARCHAR
+  especialidade : VARCHAR
+}
+
+entity Administrador {
+  * id : BIGINT
+  --
+  nivel_acesso : INTEGER
 }
 
 entity Animal {
-    * id : BIGINT
-    --
-    nome : VARCHAR
-    especie : VARCHAR
-    raca : VARCHAR
-    idade : INTEGER
-    peso : DECIMAL
+  * id : BIGINT
+  --
+  nome : VARCHAR
+  especie : VARCHAR
+  raca : VARCHAR
+  idade : INTEGER
+  peso : DECIMAL
 }
 
 entity Consulta {
-    * id : BIGINT
-    --
-    data_hora : TIMESTAMP
-    status : VARCHAR
-    valor : DECIMAL
-}
-
-entity Prontuario {
-    * id : BIGINT
-    --
-    diagnostico : TEXT
-    observacoes : TEXT
-}
-
-entity Receita {
-    * id : BIGINT
-    --
-    medicamento : VARCHAR
-    dosagem : VARCHAR
+  * id : BIGINT
+  --
+  data_hora : TIMESTAMP
+  status : VARCHAR
+  valor : DECIMAL
 }
 
 entity Vacina {
-    * id : BIGINT
-    --
-    nome : VARCHAR
-    fabricante : VARCHAR
-    data_aplicacao : DATE
+  * id : BIGINT
+  --
+  nome : VARCHAR
+  fabricante : VARCHAR
+  data_aplicacao : DATE
+}
+
+entity Prontuario {
+  * id : BIGINT
+  --
+  diagnostico : TEXT
+  observacoes : TEXT
+}
+
+entity Receita {
+  * id : BIGINT
+  --
+  medicamento : VARCHAR
+  dosagem : VARCHAR
 }
 
 entity Pagamento {
-    * id : BIGINT
-    --
-    valor : DECIMAL
-    status : VARCHAR
+  * id : BIGINT
+  --
+  valor : DECIMAL
+  status : VARCHAR
 }
 
-Cliente ||--o{ Animal
+Usuario "1" -- "1" Cliente : autentica
 
-Animal ||--o{ Consulta
+Usuario "1" -- "1" Recepcionista : autentica
 
-Consulta ||--|| Prontuario
+Usuario "1" -- "1" Veterinario : autentica
 
-Consulta ||--o{ Receita
+Usuario "1" -- "1" Administrador : autentica
 
-Animal ||--o{ Vacina
+Cliente "1" -- "1..*" Animal : possui
 
-Consulta ||--|| Pagamento
+Recepcionista "1" -- "0..*" Consulta : agenda
+
+Animal "1" -- "0..*" Consulta : realiza
+
+Veterinario "1" -- "0..*" Consulta : atende
+
+Animal "1" -- "0..*" Vacina : recebe
+
+Veterinario "1" -- "0..*" Vacina : aplica
+
+Consulta "1" -- "1" Prontuario : gera
+
+Consulta "1" -- "0..*" Receita : emite
+
+Consulta "1" -- "1" Pagamento : gera
 
 @enduml
