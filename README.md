@@ -8,7 +8,7 @@ O VetCare+ é um projeto acadêmico desenvolvido para a disciplina de Projeto de
 
 O trabalho contempla a especificação dos requisitos, modelagem UML, arquitetura de software, modelagem de dados e documentação técnica do sistema, sem a implementação do código-fonte da aplicação.
 
-Toda a documentação foi elaborada utilizando PlantUML e organizada em artefatos que representam as diferentes visões do sistema, seguindo boas práticas de engenharia de software.
+A maior parte dos diagramas foi desenvolvida utilizando PlantUML. Os diagramas de comunicação foram elaborados no Canva para melhor representação visual. Os arquivos-fonte PlantUML encontram-se na pasta `Codigo_PlantUML`.
 
 ## 📄 Documentação
 
