@@ -46,6 +46,7 @@ Nesse documento estão descritos:
 * UML (Unified Modeling Language)
 * PlantUML
 * GitHub
+* Git
 * Canva
 
 ## 🏗 Arquitetura
