@@ -80,12 +80,12 @@ Documentacao-de-projeto-VetCare/
 │
 ├── Diagramas/
 │   ├── Arquitetura.png
-│   ├── Casos_de_Uso.png
-│   ├── Diagrama_de_Classes.jpeg
-│   ├── Diagrama_de_Componentes.png
-│   ├── Diagrama_de_Estados.png
-│   ├── Diagrama_de_Implantacao.png
-│   ├── Modelo_de_Dados.png
+│   ├── Casos de Uso.png
+│   ├── Diagrama de Classes.jpeg
+│   ├── Diagrama de Componentes.png
+│   ├── Diagrama de Estados.png
+│   ├── Diagrama de Implantacao.png
+│   ├── Modelo de Dados.png
 │   │
 │   ├── Diagramas_de_Sequencia/
 │   │   ├── DS-01_Agendar_Consulta.png
